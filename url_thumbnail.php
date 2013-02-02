@@ -8,10 +8,11 @@
   Author URI: http://hiroki.jp/
 */
 
-function url_thumbnail_link($atts){
+function url_thumbnail($atts){
   extract(shortcode_atts(array(
                                'url'         => null,
                                'width'       => 400,
+                               'class'       => '',
                                ), $atts));
 
   $upload_info = wp_upload_dir();
@@ -23,12 +24,13 @@ function url_thumbnail_link($atts){
   $filename = make_screenshot($url, $width, $dir_path);
   $image_src = $upload_info['url'] . '/url_thumbnail/' . $filename;
 
-  $img_tag = "<img src=\"{$image_src}\" />";
+  $img_tag = "<img src=\"{$image_src}\" class=\"{$class}\" />";
+  $a_tag = "<a href=\"$url\" target=\"_blank\">{$img_tag}</a>";
 
-  return $img_tag;
+  return $a_tag;
 }
 
-add_shortcode('ut', 'url_thumbnail_link');
+add_shortcode('ut', 'url_thumbnail');
 
 function make_screenshot($url, $width, $dir_path='./')
 {
