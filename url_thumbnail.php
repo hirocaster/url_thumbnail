@@ -47,11 +47,14 @@ function make_screenshot($url, $width, $dir_path='./')
       curl_setopt($ch, CURLOPT_HEADER, false);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
       curl_setopt($ch, CURLOPT_URL, "http://s.wordpress.com/mshots/v1/{$urlencode}?w={$width}");
-      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
       $data = curl_exec($ch);
       curl_close($ch);
 
-      file_put_contents($full_path, $data);
+      if($data)
+      {
+          file_put_contents($full_path, $data);
+      }
     }
   return $filename;
 }
