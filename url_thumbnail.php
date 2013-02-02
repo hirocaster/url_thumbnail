@@ -24,10 +24,16 @@ function url_thumbnail($atts){
   $filename = make_screenshot($url, $width, $dir_path);
   $image_src = $upload_info['url'] . '/url_thumbnail/' . $filename;
 
-  $img_tag = "<img src=\"{$image_src}\" class=\"{$class}\" />";
-  $a_tag = "<a href=\"$url\" target=\"_blank\">{$img_tag}</a>";
 
-  return $a_tag;
+  $img_tag = "<img src=\"{$image_src}\" class=\"{$class}\" />";
+  $tag = "<a href=\"$url\" target=\"_blank\">{$img_tag}</a>";
+
+  if($filename == 'fail')
+  {
+    $tag = "<img src=\"https://s0.wp.com/wp-content/plugins/mshots/default.gif\" />";
+  }
+
+  return $tag;
 }
 
 add_shortcode('ut', 'url_thumbnail');
@@ -54,6 +60,9 @@ function make_screenshot($url, $width, $dir_path='./')
       if($data)
       {
           file_put_contents($full_path, $data);
+      }else
+      {
+        $filename = 'fail';
       }
     }
   return $filename;
