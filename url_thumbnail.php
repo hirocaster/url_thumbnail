@@ -16,13 +16,13 @@ function url_thumbnail($atts){
                                ), $atts));
 
   $upload_info = wp_upload_dir();
-  $dir_path = $upload_info['path'] . '/url_thumbnail/';
+  $dir_path = $upload_info['path'] . '/';
   if(!file_exists($dir_path)){
     mkdir($dir_path);
   }
 
   $filename = make_screenshot($url, $width, $dir_path);
-  $image_src = $upload_info['url'] . '/url_thumbnail/' . $filename;
+  $image_src = $upload_info['url'] . '/' . $filename;
 
 
   $img_tag = "<img src=\"{$image_src}\" class=\"{$class}\" />";
