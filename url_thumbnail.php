@@ -24,8 +24,14 @@ function url_thumbnail($atts){
   $filename = make_screenshot($url, $width, $dir_path);
   $image_src = $upload_info['url'] . '/' . $filename;
 
+  $img_tag = '';
 
-  $img_tag = "<img src=\"{$image_src}\" class=\"{$class}\" />";
+  if($class){
+    $img_tag = "<img src=\"{$image_src}\" class=\"{$class}\" />";
+  }else{
+    $img_tag = "<img src=\"{$image_src}\" />";
+  }
+
   $tag = "<a href=\"$url\" target=\"_blank\">{$img_tag}</a>";
 
   if($filename == 'fail')
