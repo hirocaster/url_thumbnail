@@ -36,7 +36,16 @@ function url_thumbnail($atts){
 
   if($filename == 'fail')
   {
-    $tag = "<img src=\"https://s0.wp.com/wp-content/plugins/mshots/default.gif\" />";
+    $image_src = 'https://s0.wp.com/wp-content/plugins/mshots/default.gif';
+
+    $tag = '';
+
+    if($class){
+      $tag = "<img src=\"{$image_src}\" class=\"{$class}\" />";
+    }else{
+      $tag = "<img src=\"{$image_src}\" />";
+    }
+
   }
 
   return $tag;
