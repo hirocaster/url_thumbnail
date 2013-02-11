@@ -70,25 +70,5 @@ function make_screenshot($url, $width, $dir_path='./')
 
 function formating_filename($url, $width)
 {
-  $patterns = array();
-  $patterns[0] = '/^https:\/\//';
-  $patterns[1] = '/^http:\/\//';
-  $patterns[2] = '/\/$/';
-  $patterns[3] = '/\/+/';
-  $patterns[4] = '/\?+/';
-  $patterns[5] = '/\&+/';
-  $patterns[6] = '/\=+/';
-  $patterns[7] = '/#038;/';
-
-  $replacements = array();
-  $replacements[0] = '';
-  $replacements[1] = '';
-  $replacements[2] = '';
-  $replacements[3] = '_';
-  $replacements[4] = '_';
-  $replacements[5] = '_';
-  $replacements[6] = '_';
-  $replacements[7] = '';
-
-  return preg_replace($patterns, $replacements, $url) . "_{$width}" . '.jpg';
+  return md5($url) . "_{$width}" . '.jpg';
 }
